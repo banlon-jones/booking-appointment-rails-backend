@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Resort, type: :model do
-  let(:resort) { create(:resort)}
+  let(:resort) { create(:resort) }
 
   describe 'Attributes' do
     it 'is not valid without a name' do
