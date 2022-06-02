@@ -55,4 +55,8 @@ RSpec.describe Resort, type: :model do
       expect(resort.cost).to be_kind_of(BigDecimal)
     end
   end
+
+  describe 'Associations' do
+    it { should have_many(:reservations) }
+  end
 end
