@@ -213,6 +213,8 @@ GEM
     rubocop-ast (1.17.0)
       parser (>= 3.1.1.0)
     ruby-progressbar (1.11.0)
+    shoulda-matchers (5.1.0)
+      activesupport (>= 5.2.0)
     strscan (3.0.3)
     thor (1.2.1)
     timeout (0.3.0)
@@ -248,6 +250,7 @@ DEPENDENCIES
   rails-controller-testing
   rspec-rails (~> 6.0.0.rc1)
   rubocop (>= 1.0, < 2.0)
+  shoulda-matchers (~> 5.0)
   tzinfo-data
   web-console
 
