@@ -6,5 +6,5 @@ class JwtAuthService
 
   def self.decode(token)
     JWT.decode(token, HMAC_SECRET_KEY, true, { algorithm: 'HS256' })
-  end 
+  end
 end
