@@ -5,5 +5,13 @@ class ApplicationController < ActionController::API
     end
     headers = request.headers['Authorization']
     decoded = JsonWebToken.decode headers
+    create_current_user(decoded)
+  end
+
+  private
+  
+  def create_current_user(decoded_token)
+    id = decoded_token[0]['id']
+    @current_user = User.find(id)
   end
 end
