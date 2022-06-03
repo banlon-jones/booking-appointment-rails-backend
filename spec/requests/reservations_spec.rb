@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Reservations", type: :request do
+RSpec.describe 'Reservations', type: :request do
   reservation = Reservation.new(
     resort_id: 'resort.id',
     date_from: '2022-07-09',

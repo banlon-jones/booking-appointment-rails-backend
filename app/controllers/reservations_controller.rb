@@ -8,15 +8,14 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
-    render json: {reservation: @reservation}
+    render json: { reservation: @reservation }
   end
 
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.user_id = @current_user.id
     if @reservation.save
-      render json: {message: "Reservation successfully created", reservation: @reservation},
-      status: :created, location: @resort
+      render json: { message: 'Reservation successfully created', reservation: @reservation }, status: :created, location: @resort
     else
       render json: @reservation.errors, status: :unprocessable_entity
     end
