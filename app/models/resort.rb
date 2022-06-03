@@ -8,15 +8,15 @@ class Resort < ApplicationRecord
   validates :description, presence: true
   validates :cost, presence: true, comparison: { greater_than: 0.0 }, numericality: true
 
-  def as_json(options = {})
+  def as_json(_options = {})
     {
-      :id => self.id,
-      :name => self.name,
-      :city => self.city,
-      :country => self.country,
-      :image => self.image,
-      :description => self.description,
-      :cost => self.cost
+      id: id,
+      name: name,
+      city: city,
+      country: country,
+      image: image,
+      description: description,
+      cost: cost
     }
   end
 end

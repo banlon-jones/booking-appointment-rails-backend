@@ -4,12 +4,12 @@ class Reservation < ApplicationRecord
   validates :date_from, presence: true
   validates :date_to, presence: true
 
-  def as_json(options = {})
+  def as_json(_options = {})
     {
-      :id => self.id,
-      :date_from => self.date_from,
-      :date_to => self.date_to,
-      :resort => self.resort
+      id: id,
+      date_from: date_from,
+      date_to: date_to,
+      resort: resort
     }
   end
 end
