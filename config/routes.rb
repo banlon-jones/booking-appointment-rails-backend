@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :reservations, only: %i[index show create]
+
   get 'auth/login', to: 'users#login'
   post 'auth/register', to: 'users#signup'
 end
