@@ -16,7 +16,8 @@ class Resort < ApplicationRecord
       country: country,
       image: image,
       description: description,
-      cost: cost
+      cost: cost,
+      isDeleted: isDeleted
     }
   end
 end
