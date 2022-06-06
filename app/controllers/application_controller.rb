@@ -3,6 +3,20 @@ require_relative '../services/jwt_auth'
 class ApplicationController < ActionController::API
   before_action :update_allowed_parameters, if: :devise_controller?
 
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render json: { error: e.message }, status: :unauthorized
+  end
+  rescue_from JWT::VerificationError do |_e|
+    render json: { error: 'Invalid Token' }, status: :unauthorized
+  end
+  rescue_from ActiveRecord::RecordInvalid do |e|
+    render json: { error: e.message }, status: :unprocessable_entity
+  end
+
+  rescue_from ActionController::ParameterMissing do |e|
+    render json: { error: e.message }, status: :bad_request
+  end
+
   def authenticate_user
     unless request.headers['Authorization'].present?
       render json: { message: 'Authorization token missing' }, status: :unprocessable_entity and return

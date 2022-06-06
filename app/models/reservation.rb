@@ -6,10 +6,10 @@ class Reservation < ApplicationRecord
 
   def as_json(_options = {})
     {
-      id: id,
-      date_from: date_from,
-      date_to: date_to,
-      resort: resort
+      id:,
+      date_from:,
+      date_to:,
+      resort:
     }
   end
 end
