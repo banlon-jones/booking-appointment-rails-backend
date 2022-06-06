@@ -1,14 +1,15 @@
 class ReservationsController < ApplicationController
-  before_action :authenticate_user, except: [:login]
+  before_action :current_user
+  authorize_resource
 
   def index
-    @user_reservations = Reservation.where(user_id: @current_user.id)
+    @user_reservations = Reservation.where(user_id: current_user.id)
     render json: @user_reservations
   end
 
   def create
     @reservation = Reservation.new(reservation_params)
-    @reservation.user_id = @current_user.id
+    @reservation.user_id = current_user.id
     if @reservation.save
       render json:
       { message: 'Reservation successfully created', reservation: @reservation }, status: :created, location: @resort

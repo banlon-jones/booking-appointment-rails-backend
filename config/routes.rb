@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :reservations, only: %i[index show create]
+  resources :reservations, only: %i[index create]
   resources :resorts, only: %i[index show create update destroy]
 
   get 'auth/login', to: 'users#login'
