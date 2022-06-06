@@ -10,9 +10,11 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound do |e|
     render json: { error: e.message }, status: :unauthorized
   end
+
   rescue_from JWT::VerificationError do |_e|
     render json: { error: 'Invalid Token' }, status: :unauthorized
   end
+
   rescue_from ActiveRecord::RecordInvalid do |e|
     render json: { error: e.message }, status: :unprocessable_entity
   end
@@ -22,7 +24,9 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    id = auth_token[0]['id']
+    return unless auth_token
+
+    id = auth_token.first['id']
     User.find(id)
   end
 
@@ -30,7 +34,7 @@ class ApplicationController < ActionController::API
 
   def auth_token
     unless request.headers['Authorization'].present?
-      render json: { message: 'Authorization token missing' }, status: :unprocessable_entity and return
+      render json: { error: 'Authorization token missing' }, status: :unprocessable_entity and return false
     end
 
     headers = request.headers['Authorization']

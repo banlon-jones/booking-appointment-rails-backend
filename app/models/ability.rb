@@ -4,7 +4,10 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    can :read, Resort, user: user
+    can %i[read show], Resort
+
+    return unless user
+
     can %i[read destroy], Reservation, user: user
 
     return unless user.role == 'admin'
