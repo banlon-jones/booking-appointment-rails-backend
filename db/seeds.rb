@@ -1,7 +1,14 @@
-user= User.create(
+admin = User.create(
   name: 'admin',
   email: 'admin@gmail.com',
   role: 'admin',
+  password: 'password',
+  password_confirmation: 'password'
+)
+
+user = User.create(
+  name: 'bob',
+  email: 'bob@gmail.com',
   password: 'password',
   password_confirmation: 'password'
 )

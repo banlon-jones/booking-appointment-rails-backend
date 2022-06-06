@@ -1,5 +1,5 @@
 class ResortsController < ApplicationController
-  before_action :authenticate_user
+  before_action :current_user
 
   def index
     @resorts = Resort.all
@@ -31,6 +31,7 @@ class ResortsController < ApplicationController
 
   def destroy
     @resort = Resort.find(params[:id])
+    # authorize! :destroy, @resort
     @resort.delete
   end
 

@@ -1,14 +1,10 @@
 require_relative '../services/jwt_auth'
 
 class ApplicationController < ActionController::API
-  protect_from_forgery with: :exception
-  before_action :update_allowed_parameters, if: :devise_controller?
   before_action :update_allowed_parameters, if: :devise_controller?
 
-  rescue_from CanCan::AccessDenied do |exception|
-    respond_to do |format|
-      format.json { head :forbidden }
-    end
+  rescue_from CanCan::AccessDenied do |_e|
+    render json: { message: 'You are not authorized to access this resource feature' }, status: :forbidden
   end
 
   rescue_from ActiveRecord::RecordNotFound do |e|
@@ -25,21 +21,20 @@ class ApplicationController < ActionController::API
     render json: { error: e.message }, status: :bad_request
   end
 
-  def authenticate_user
+  def current_user
+    id = getAuthToken[0]['id']
+    User.find(id)
+  end
+
+  private
+
+  def getAuthToken
     unless request.headers['Authorization'].present?
       render json: { message: 'Authorization token missing' }, status: :unprocessable_entity and return
     end
 
     headers = request.headers['Authorization']
-    decoded = JwtAuthService.decode headers
-    create_current_user(decoded)
-  end
-
-  private
-
-  def create_current_user(decoded_token)
-    id = decoded_token[0]['id']
-    @current_user = User.find(id)
+    JwtAuthService.decode headers
   end
 
   protected
