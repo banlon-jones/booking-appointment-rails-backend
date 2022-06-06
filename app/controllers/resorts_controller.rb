@@ -1,5 +1,6 @@
 class ResortsController < ApplicationController
-  # before_action :authenticate_user
+  before_action :current_user, except: %i[index show]
+  authorize_resource except: %i[index show]
 
   def index
     @resorts = Resort.where(isDeleted: false)
@@ -12,6 +13,7 @@ class ResortsController < ApplicationController
   end
 
   def create
+    puts current_user.name
     @resort = Resort.new(resort_params)
     if @resort.save
       render json: { message: 'resort successfully created', resort: @resort }, status: :created

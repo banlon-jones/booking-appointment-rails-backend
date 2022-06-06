@@ -3,21 +3,42 @@ require_relative '../services/jwt_auth'
 class ApplicationController < ActionController::API
   before_action :update_allowed_parameters, if: :devise_controller?
 
-  def authenticate_user
-    unless request.headers['Authorization'].present?
-      render json: { message: 'Authorization token missing' }, status: :unprocessable_entity and return
-    end
+  rescue_from CanCan::AccessDenied do |_e|
+    render json: { message: 'You are not authorized to access this resource feature' }, status: :forbidden
+  end
 
-    headers = request.headers['Authorization']
-    decoded = JwtAuthService.decode headers
-    create_current_user(decoded)
+  rescue_from ActiveRecord::RecordNotFound do |e|
+    render json: { error: e.message }, status: :unauthorized
+  end
+
+  rescue_from JWT::VerificationError do |_e|
+    render json: { error: 'Invalid Token' }, status: :unauthorized
+  end
+
+  rescue_from ActiveRecord::RecordInvalid do |e|
+    render json: { error: e.message }, status: :unprocessable_entity
+  end
+
+  rescue_from ActionController::ParameterMissing do |e|
+    render json: { error: e.message }, status: :bad_request
+  end
+
+  def current_user
+    return unless auth_token
+
+    id = auth_token.first['id']
+    User.find(id)
   end
 
   private
 
-  def create_current_user(decoded_token)
-    id = decoded_token[0]['id']
-    @current_user = User.find(id)
+  def auth_token
+    unless request.headers['Authorization'].present?
+      render json: { error: 'Authorization token missing' }, status: :unprocessable_entity and return false
+    end
+
+    headers = request.headers['Authorization']
+    JwtAuthService.decode headers
   end
 
   protected
