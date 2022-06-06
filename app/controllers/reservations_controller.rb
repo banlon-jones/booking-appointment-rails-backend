@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :current_user
+  load_and_authorize_resource
 
   def index
     @user_reservations = Reservation.where(user_id: current_user.id)

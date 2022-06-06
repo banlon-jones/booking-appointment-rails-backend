@@ -22,13 +22,13 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    id = getAuthToken[0]['id']
+    id = auth_token[0]['id']
     User.find(id)
   end
 
   private
 
-  def getAuthToken
+  def auth_token
     unless request.headers['Authorization'].present?
       render json: { message: 'Authorization token missing' }, status: :unprocessable_entity and return
     end

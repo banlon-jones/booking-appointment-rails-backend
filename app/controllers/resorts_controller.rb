@@ -1,5 +1,6 @@
 class ResortsController < ApplicationController
   before_action :current_user
+  load_and_authorize_resource
 
   def index
     @resorts = Resort.all
@@ -31,7 +32,6 @@ class ResortsController < ApplicationController
 
   def destroy
     @resort = Resort.find(params[:id])
-    # authorize! :destroy, @resort
     @resort.delete
   end
 
