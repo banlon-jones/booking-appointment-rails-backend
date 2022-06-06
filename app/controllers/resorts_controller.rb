@@ -3,7 +3,7 @@ class ResortsController < ApplicationController
   authorize_resource except: %i[index show]
 
   def index
-    @resorts = Resort.all
+    @resorts = Resort.where(isDeleted: false)
     render json: @resorts
   end
 
@@ -16,7 +16,7 @@ class ResortsController < ApplicationController
     puts current_user.name
     @resort = Resort.new(resort_params)
     if @resort.save
-      render json: { message: 'resorted created', resort: @resort }, status: :created
+      render json: { message: 'resort successfully created', resort: @resort }, status: :created
     else
       render json: @resort.errors, status: :unprocessable_entity
     end
@@ -33,7 +33,9 @@ class ResortsController < ApplicationController
 
   def destroy
     @resort = Resort.find(params[:id])
-    @resort.delete
+    @resort.isDeleted = true
+    @resort.save
+    render json: { message: 'resort successfully deleted', resort: @resort }, status: :ok
   end
 
   private
