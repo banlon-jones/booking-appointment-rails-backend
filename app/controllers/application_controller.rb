@@ -1,7 +1,15 @@
 require_relative '../services/jwt_auth'
 
 class ApplicationController < ActionController::API
+  protect_from_forgery with: :exception
   before_action :update_allowed_parameters, if: :devise_controller?
+  before_action :update_allowed_parameters, if: :devise_controller?
+
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :forbidden }
+    end
+  end
 
   rescue_from ActiveRecord::RecordNotFound do |e|
     render json: { error: e.message }, status: :unauthorized
