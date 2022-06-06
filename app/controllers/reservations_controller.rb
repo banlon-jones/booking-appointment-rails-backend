@@ -6,11 +6,6 @@ class ReservationsController < ApplicationController
     render json: @user_reservations
   end
 
-  def show
-    @reservation = Reservation.find(params[:id])
-    render json: { reservation: @reservation }
-  end
-
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.user_id = @current_user.id
