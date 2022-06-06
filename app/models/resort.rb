@@ -10,14 +10,14 @@ class Resort < ApplicationRecord
 
   def as_json(_options = {})
     {
-      id: id,
-      name: name,
-      city: city,
-      country: country,
-      image: image,
-      description: description,
-      cost: cost,
-      isDeleted: isDeleted
+      id:,
+      name:,
+      city:,
+      country:,
+      image:,
+      description:,
+      cost:,
+      isDeleted:
     }
   end
 end

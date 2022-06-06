@@ -35,6 +35,7 @@ class ResortsController < ApplicationController
     @resort = Resort.find(params[:id])
     @resort.isDeleted = true
     @resort.save
+    render json: { message: 'resort successfully deleted', resort: @resort }, status: :ok
   end
 
   private
