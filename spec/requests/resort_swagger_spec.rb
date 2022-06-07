@@ -118,5 +118,16 @@ describe 'Resorts API' do
     end
   end
 
- 
+  # Destroy
+  path '/resorts/{id}' do
+    delete 'Delete a resort' do
+      tags 'Resorts'
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :integer
+      security [Bearer: {}]
+      response '200', 'resort delected' do
+        run_test!
+      end
+    end
+  end
 end
