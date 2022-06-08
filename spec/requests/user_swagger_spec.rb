@@ -23,5 +23,20 @@ describe 'Users API' do
     end
   end
 
- 
+  path '/auth/login' do
+    post 'Login a user' do
+      tags 'Users'
+      produces 'application/json'
+      parameter name: :user, in: :body, schema: {
+        type: :object,
+        properties: {
+          email: { type: :string },
+          password: { type: :string }
+        }
+      }
+      response '201', 'user created' do
+        run_test!
+      end
+    end
+  end
 end
