@@ -4,16 +4,16 @@ RSpec.describe 'Resorts', type: :request do
   describe 'GET /index' do
     before(:example) { get '/resorts' }
 
-    it 'should return 422 success' do
-      expect(response).to have_http_status(422)
+    it 'should return 200 success' do
+      expect(response).to have_http_status(200)
     end
   end
 
   describe 'GET /show' do
     before(:example) { get '/resorts' }
 
-    it 'should return 422 success' do
-      expect(response).to have_http_status(422)
+    it 'should return 200 success' do
+      expect(response).to have_http_status(200)
     end
   end
 

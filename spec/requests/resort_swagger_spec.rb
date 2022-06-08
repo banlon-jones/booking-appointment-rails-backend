@@ -2,7 +2,6 @@ require 'swagger_helper'
 require 'rails_helper'
 
 describe 'Resorts API' do
-
   # Index
   path '/resorts' do
     get 'Retrieves resorts' do
