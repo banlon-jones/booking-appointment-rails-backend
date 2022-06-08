@@ -1,3 +1,5 @@
 class StaticController < ApplicationController
-  def index; end
+  def index
+    render json: { message: 'Home page' }
+  end
 end
