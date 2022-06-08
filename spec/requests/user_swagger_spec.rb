@@ -23,6 +23,7 @@ describe 'Users API' do
     end
   end
 
+  # Login
   path '/auth/login' do
     post 'Login a user' do
       tags 'Users'
