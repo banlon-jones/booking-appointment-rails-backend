@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :reservations, only: %i[index create]
   resources :resorts, only: %i[index show create update destroy]
 
-  get 'auth/login', to: 'users#login'
+  post 'auth/login', to: 'users#login'
   post 'auth/register', to: 'users#signup'
 end
