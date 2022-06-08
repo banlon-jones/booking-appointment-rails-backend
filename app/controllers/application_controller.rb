@@ -1,4 +1,4 @@
-require_relative '../services/jwt_auth'
+require_relative '../services/jwt_auth_service'
 
 class ApplicationController < ActionController::API
   before_action :update_allowed_parameters, if: :devise_controller?
