@@ -16,10 +16,7 @@ describe 'Resorts API' do
                  country: { type: :string },
                  image: { type: :string },
                  description: { type: :string },
-                 cost: { type: :number },
-                 created_at: { type: :datetime },
-                 updated_at: { type: :datetime },
-                 isDeleted: { type: :boolean }
+                 cost: { type: :number }
                },
                required: %w[id name city country image cost created_at updated_at isDeleted]
         run_test!
@@ -43,10 +40,7 @@ describe 'Resorts API' do
                  country: { type: :string },
                  image: { type: :string },
                  description: { type: :string },
-                 cost: { type: :number },
-                 created_at: { type: :datetime },
-                 updated_at: { type: :datetime },
-                 isDeleted: { type: :boolean }
+                 cost: { type: :number }
                },
                required: %w[id name city country image cost created_at updated_at isDeleted]
         run_test!
@@ -78,8 +72,7 @@ describe 'Resorts API' do
           country: { type: :string },
           image: { type: :string },
           description: { type: :string },
-          cost: { type: :number },
-          isDeleted: { type: :boolean }
+          cost: { type: :number }
         },
         required: %w[name city country image cost isDeleted]
       }
@@ -105,8 +98,7 @@ describe 'Resorts API' do
           country: { type: :string },
           image: { type: :string },
           description: { type: :string },
-          cost: { type: :number },
-          isDeleted: { type: :boolean }
+          cost: { type: :number }
         },
         required: %w[name city country image cost isDeleted]
       }
