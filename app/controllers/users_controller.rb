@@ -1,4 +1,4 @@
-require_relative '../services/jwt_auth'
+require_relative '../services/jwt_auth_service'
 
 class UsersController < ApplicationController
   def login

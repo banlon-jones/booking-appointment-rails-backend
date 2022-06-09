@@ -142,15 +142,6 @@
                 },
                 "cost": {
                   "type": "number"
-                },
-                "created_at": {
-                  "type": "datetime"
-                },
-                "updated_at": {
-                  "type": "datetime"
-                },
-                "isDeleted": {
-                  "type": "boolean"
                 }
               },
               "required": [
@@ -206,9 +197,6 @@
                 },
                 "cost": {
                   "type": "number"
-                },
-                "isDeleted": {
-                  "type": "boolean"
                 }
               },
               "required": [
@@ -272,15 +260,6 @@
                 },
                 "cost": {
                   "type": "number"
-                },
-                "created_at": {
-                  "type": "datetime"
-                },
-                "updated_at": {
-                  "type": "datetime"
-                },
-                "isDeleted": {
-                  "type": "boolean"
                 }
               },
               "required": [
@@ -342,9 +321,6 @@
                 },
                 "cost": {
                   "type": "number"
-                },
-                "isDeleted": {
-                  "type": "boolean"
                 }
               },
               "required": [
