@@ -10,4 +10,5 @@ Rails.application.routes.draw do
 
   post 'auth/login', to: 'users#login'
   post 'auth/register', to: 'users#signup'
+  post 'user-role', to: 'users#user_role'
 end

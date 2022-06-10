@@ -1,6 +1,12 @@
 require_relative '../services/jwt_auth_service'
 
 class UsersController < ApplicationController
+  def user_role
+    @user = current_user
+    @role = @user.role
+    render json: { role: @role }
+  end
+  
   def login
     @user = User.find_by_email!(params[:email])
     if @user&.valid_password?(params[:password])
