@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @role = @user.role
     render json: { role: @role }
   end
-  
+
   def login
     @user = User.find_by_email!(params[:email])
     if @user&.valid_password?(params[:password])
