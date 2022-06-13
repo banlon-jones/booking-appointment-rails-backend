@@ -2,7 +2,7 @@
 
 # Resorts Booking API
 
-> This is an back-end API for a resorts booking web app. In this app, users can see available resolrts, reserve resorts, and see own reservations. Users with admin role can also create, update and delete resorts.
+> This is an back-end API for a resorts booking web app. In this app, users can see available resorts, reserve resorts, and see own reservations. Users with admin role can also create, update and delete resorts.
 
 This project is made as part of Microverse program.
 
@@ -13,7 +13,8 @@ This project is made as part of Microverse program.
 
 ## Live Demo
 
-- [Live link](https://resorts-booking-api.herokuapp.com/)
+- [BE API Live link](https://resorts-booking-api.herokuapp.com/)
+- [FE Live link](https://resorts-booking.netlify.app/)
 
 ## Getting Started
 
