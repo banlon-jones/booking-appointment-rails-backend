@@ -8,7 +8,7 @@ class Ability
 
     return unless user
 
-    can %i[read destroy], Reservation, user: user
+    can %i[read create destroy], Reservation, user: user
 
     return unless user.role == 'admin'
 
