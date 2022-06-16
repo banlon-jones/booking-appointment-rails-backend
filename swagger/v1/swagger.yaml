@@ -1,0 +1,164 @@
+---
+openapi: 3.0.1
+info:
+  title: Tourism backend Api
+  version: v1
+securityDefinitions:
+  Bearer:
+    description: "..."
+    type: apiKey
+    name: Authorization
+    in: header
+paths:
+  "/resorts":
+    get:
+      summary: Retrieves a resort
+      tags:
+      - Resorts
+      responses:
+        '200':
+          description: resort found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  city:
+                    type: string
+                  country:
+                    type: string
+                  image:
+                    type: string
+                  description:
+                    type: string
+                  cost:
+                    type: number
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  isDeleted:
+                    type: boolean
+                required:
+                - id
+                - name
+                - city
+                - country
+                - image
+                - cost
+                - created_at
+                - updated_at
+                - isDeleted
+        '404':
+          description: Resorts not found
+        '406':
+          description: unsupported accept header
+    post:
+      summary: Creates a resort
+      tags:
+      - Resorts
+      security:
+      - Bearer: {}
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '201':
+          description: resort created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                city:
+                  type: string
+                country:
+                  type: string
+                image:
+                  type: string
+                description:
+                  type: string
+                cost:
+                  type: number
+                isDeleted:
+                  type: boolean
+              required:
+              - name
+              - city
+              - country
+              - image
+              - cost
+              - isDeleted
+  "/resorts/{id}":
+    get:
+      summary: Retrieves a resort
+      tags:
+      - Resorts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: resort found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  city:
+                    type: string
+                  country:
+                    type: string
+                  image:
+                    type: string
+                  description:
+                    type: string
+                  cost:
+                    type: number
+                  created_at:
+                    type: datetime
+                  updated_at:
+                    type: datetime
+                  isDeleted:
+                    type: boolean
+                required:
+                - id
+                - name
+                - city
+                - country
+                - image
+                - cost
+                - created_at
+                - updated_at
+                - isDeleted
+        '404':
+          description: Resorts not found
+        '406':
+          description: unsupported accept header
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000

@@ -1,0 +1,477 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Tourism backend Api",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "description": "...",
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/reservations": {
+      "get": {
+        "summary": "Retrieves reservations",
+        "tags": [
+          "Reservations"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "reservation found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "date_from": {
+                  "type": "datatime"
+                },
+                "date_to": {
+                  "type": "datatime"
+                },
+                "user_id": {
+                  "type": "integer"
+                },
+                "resort_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "date_from",
+                "date_to",
+                "user_id",
+                "resort_id"
+              ]
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a reservation",
+        "tags": [
+          "Reservations"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "resort",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date_from": {
+                  "type": "datatime"
+                },
+                "date_to": {
+                  "type": "datatime"
+                },
+                "resort_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "date_from",
+                "date_to",
+                "resort_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "reservation created"
+          }
+        }
+      }
+    },
+    "/resorts": {
+      "get": {
+        "summary": "Retrieves resorts",
+        "tags": [
+          "Resorts"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "resort found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "cost": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "city",
+                "country",
+                "image",
+                "cost",
+                "created_at",
+                "updated_at",
+                "isDeleted"
+              ]
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a resort",
+        "tags": [
+          "Resorts"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "parameters": [
+          {
+            "name": "resort",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "cost": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "city",
+                "country",
+                "image",
+                "cost",
+                "isDeleted"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "resort created"
+          }
+        }
+      }
+    },
+    "/resorts/{id}": {
+      "get": {
+        "summary": "Retrieves a resort",
+        "tags": [
+          "Resorts"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "resort found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "cost": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "city",
+                "country",
+                "image",
+                "cost",
+                "created_at",
+                "updated_at",
+                "isDeleted"
+              ]
+            }
+          },
+          "404": {
+            "description": "Resorts not found"
+          },
+          "406": {
+            "description": "unsupported accept header"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update a resort",
+        "tags": [
+          "Resorts"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "resort",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "cost": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "city",
+                "country",
+                "image",
+                "cost",
+                "isDeleted"
+              ]
+            }
+          }
+        ],
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "resort Updated"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a resort",
+        "tags": [
+          "Resorts"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "resort delected"
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "Register a new user",
+        "tags": [
+          "Users"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "password_confirmation": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "city",
+                "country",
+                "image",
+                "cost",
+                "isDeleted"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "user created"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Login a user",
+        "tags": [
+          "Users"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "user created"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://{defaultHost}",
+      "variables": {
+        "defaultHost": {
+          "default": "www.example.com"
+        }
+      }
+    },
+    {
+      "url": "http://{defaultHost}",
+      "variables": {
+        "defaultHost": {
+          "default": "localhost:3000"
+        }
+      }
+    }
+  ]
+}
