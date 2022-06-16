@@ -11,10 +11,33 @@ This project is made as part of Microverse program.
 - RUBY
 - RAILS
 
+## Logging In with Admin
+
+- To log in as admin use email: `admin@gmail.com` and password: `password`
+
+## Token Usage
+
+- Use the below docs to register then login inorder to get an access token.
+- Click on the Authorize button in the API documentation and paste the access token to login
+
+## API Documentation
+
+[Resorts Booking API Documentation](https://resorts-booking-api.herokuapp.com/api-docs/index.html)
+
 ## Live Demo
 
-- [BE API Live link](https://resorts-booking-api.herokuapp.com/)
-- [FE Live link](https://resorts-booking.netlify.app/)
+- [Resorts API Live link](https://resorts-booking-api.herokuapp.com/)
+- [Resorts Front-End Live link](https://resorts-booking.netlify.app/)
+
+## Kanban Board
+
+[Initial State](https://user-images.githubusercontent.com/89528737/171438768-5eff1421-320a-461e-b476-7651b4ed4897.png)
+
+[Current State](https://github.com/banlon-jones/booking-appointment-rails-backend/projects/1)
+
+## Final Team Size
+
+- We are a team of five developers.
 
 ## Getting Started
 
@@ -33,7 +56,7 @@ cd booking-appointment-rails-backend
 Current Ruby Version for this project
 
 ```
-ruby >= 3.0.0
+ruby 3.1.2
 ```
 
 Install all the dependencies.
